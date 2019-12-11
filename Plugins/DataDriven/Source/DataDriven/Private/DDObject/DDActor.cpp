@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "DDActor.h"
+#include "DDObject/DDActor.h"
 
 // Sets default values
 ADDActor::ADDActor()
