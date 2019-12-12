@@ -25,6 +25,7 @@
 #include "IXRTrackingSystem.h"
 #include "HeadMountedDisplayFunctionLibrary.h"
 #endif // HMD_MODULE_INCLUDED
+#include "DDCommon/DDCommon.h"
 
 const FName ARaceUnrealFrameworkPawn::LookUpBinding("LookUp");
 const FName ARaceUnrealFrameworkPawn::LookRightBinding("LookRight");
@@ -231,6 +232,9 @@ void ARaceUnrealFrameworkPawn::BeginPlay()
 	bEnableInCar = UHeadMountedDisplayFunctionLibrary::IsHeadMountedDisplayEnabled();
 #endif // HMD_MODULE_INCLUDED
 	EnableIncarView(bEnableInCar,true);
+
+	//≤‚ ‘ π”√
+	DDH::Debug(FColor::Red) << "ARaceUnrealFrameworkPawn::BeginPlay" << 3542 << true << DDH::Endl();
 }
 
 void ARaceUnrealFrameworkPawn::OnResetVR()

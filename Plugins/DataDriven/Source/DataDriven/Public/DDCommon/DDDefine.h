@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
+#include "DDCommon/DDTypes.h"
 #include "DDDefine.generated.h"
 
 /**
