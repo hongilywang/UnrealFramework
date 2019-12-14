@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "DDCore/DDCenterModule.h"
 #include "DDDriver.generated.h"
 
 UCLASS()
@@ -15,6 +16,8 @@ public:
 	// Sets default values for this actor's properties
 	ADDDriver();
 
+	virtual void PostInitializeComponents() override;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -23,4 +26,10 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+public:
+	UPROPERTY(EditAnywhere, NoClear, BlueprintReadOnly, Category = "DataDriven")
+		USceneComponent* RootScene;
+
+	UPROPERTY(EditAnywhere, NoClear, BlueprintReadOnly, Category = "DataDriven")
+		UDDCenterModule* Center;
 };

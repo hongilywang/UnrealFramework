@@ -7,6 +7,8 @@
 #include "DDCommon/DDDefine.h"
 #include "DDCommon.generated.h"
 
+class ADDDriver;
+
 namespace DDH
 {
 	FORCEINLINE DDRecord& Debug(float InTime = 3000.f, FColor InColor = FColor::Yellow)
@@ -53,4 +55,16 @@ class DATADRIVEN_API UDDCommon : public UObject
 {
 	GENERATED_BODY()
 	
+public:
+	static UDDCommon* Get();
+
+	void InitDriver(ADDDriver* InDriver);
+
+	ADDDriver* GetDriver();
+
+private:
+
+	static UDDCommon* DDInst;
+
+	ADDDriver* Driver;
 };
