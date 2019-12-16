@@ -20,6 +20,13 @@ void ADDDriver::PostInitializeComponents()
 {
 	//
 	Super::PostInitializeComponents();
+	//注册世界和Driver到UDDCommon单例
+	UDDCommon::Get()->InitDriver(this);
+	//游戏运行之前必须进行一次模组 ID的设定，在这里会注册子模组到数组
+	Center->IterChangeModuleType(Center, ModuleType);
+
+	//创建所有模组的模块
+	Center->IterCreateManager(Center);
 }
 
 // Called when the game starts or when spawned
@@ -27,12 +34,27 @@ void ADDDriver::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	//迭代调用Init函数
+	Center->IterModuleInit(Center);
 }
 
 // Called every frame
 void ADDDriver::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (!IsBeginPlay)
+	{
+		//迭代调用Begin函数
+		Center->IterModuleBeginPlay(Center);
+		IsBeginPlay = true;
+	}
+	else
+	{
+		//迭代调用tick函数
+		Center->IterModuleTick(Center, DeltaTime);
+	}
+
 
 }
 

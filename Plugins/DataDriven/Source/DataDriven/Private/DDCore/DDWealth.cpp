@@ -3,3 +3,12 @@
 
 #include "DDCore/DDWealth.h"
 
+void UDDWealth::WealthBeginPlay()
+{
+
+}
+
+void UDDWealth::WealthTick(float DeltaSeconds)
+{
+
+}

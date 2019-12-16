@@ -4,7 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "DDCore/DDCenterModule.h"
+#include "DDCenterModule.h"
+#include "DDCommon/DDCommon.h"
 #include "DDDriver.generated.h"
 
 UCLASS()
@@ -32,4 +33,12 @@ public:
 
 	UPROPERTY(EditAnywhere, NoClear, BlueprintReadOnly, Category = "DataDriven")
 		UDDCenterModule* Center;
+
+	//模组对应的枚举名字
+	UPROPERTY(EditDefaultsOnly, Category = "DataDriven")
+		FName* ModuleType;
+
+protected:
+	//是否已经运行BeginPlay函数
+	bool IsBeginPlay;
 };

@@ -2,33 +2,56 @@
 
 
 #include "DDCore/DDModule.h"
+#include "DDCore/DDMessage.h"
+#include "DDCore/DDWealth.h"
+#include "DDCore/DDModel.h"
 
 // Sets default values for this component's properties
 UDDModule::UDDModule()
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
-	PrimaryComponentTick.bCanEverTick = true;
+	PrimaryComponentTick.bCanEverTick = false;
 
 	// ...
 }
 
-
-// Called when the game starts
-void UDDModule::BeginPlay()
+void UDDModule::CreateManager()
 {
-	Super::BeginPlay();
-
-	// ...
-	
+	//实例化组件，这里用NewObject实例化组件时不能再括号填写this,否则变压器运行游戏时会崩溃
+	Model = NewObject<UDDModel>();
+	Message = NewObject<UDDMessage>();
+	Wealth = NewObject<UDDWealth>();
+	//避免被垃圾回收器销毁
+	Model->AddToRoot();
+	Message->AddToRoot();
+	Wealth->AddToRoot();
+	//指定模组
+	Model->AssignModule(this);
+	Message->AssignModule(this);
+	Wealth->AssignModule(this);
 }
 
-
-// Called every frame
-void UDDModule::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+void UDDModule::ModuleInit()
 {
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
-	// ...
+	//调用Init函数
+	Model->ModelInit();
+	Message->MessageInit();
+	Wealth->WealthInit();
 }
 
+void UDDModule::ModuleBeginPlay()
+{
+	//调用beginplay函数
+	Model->ModelBeginPlay();
+	Message->MessageBeginPlay();
+	Wealth->WealthBeginPlay();
+}
+
+void UDDModule::ModuleTick(float DeltaSeconds)
+{
+	//调用tick函数
+	Model->ModelTick(DeltaSeconds);
+	Message->MessageTick(DeltaSeconds);
+	Wealth->WealthTick(DeltaSeconds);
+}

@@ -3,3 +3,7 @@
 
 #include "DDCore/DDModel.h"
 
+void UDDModel::ModelTick(float DeltaSeconds)
+{
+
+}
