@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "UObject/NoExportTypes.h"
 #include "DDCommon/DDDefine.h"
+#include "DDGame/DGCommon.h"
 #include "DDCommon.generated.h"
 
 class ADDDriver;
@@ -44,6 +45,45 @@ namespace DDH
 	FORCEINLINE DDRecord& Endl()
 	{
 		return *DDRecord::Get();
+	}
+
+	//将传入的Enum值对应的FString输出，直接输出value对应的值
+	template<typename TEnum>
+	FORCEINLINE FString GetEnumValueAsString(const FString& Name, TEnum Value)
+	{
+		const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, *Name, true);
+		if (!EnumPtr)
+			return FString("InValid");
+		return EnumPtr->GetEnumName((int32)Value);
+	}
+
+	//将传入的Enum值对应的FName输出
+	template<typename TEnum>
+	FORCEINLINE FName GetEnumValueAsName(const FString& Name, TEnum Value)
+	{
+		const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, *Name, true);
+		if (!EnumPtr)
+			return FName("InValid");
+		return FName(*EnumPtr->GetEnumName((int32)Value));
+	}
+
+	//将传入的FName对应的Enum输出
+	template<typename TEnum>
+	FORCEINLINE TEnum GetEnumValueFromName(const FString& Name, FName Value)
+	{
+		const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, *Name, true);
+		if (!EnumPtr)
+			return TEnum(0);
+		return (TEnum)EnumPtr->GetIndexByName(Value);
+	}
+
+	//将传入的FName对应的Enum的序号输出
+	FORCEINLINE int32 GetEnumIndexFromName(const FString& Name, FName Value)
+	{
+		const UEnum* EnumPtr = FindObject<UEnum>(ANY_PACKAGE, *Name, true);
+		if (!EnumPtr)
+			return -1;
+		return EnumPtr->GetIndexByName(Value);
 	}
 }
 

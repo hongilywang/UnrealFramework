@@ -36,7 +36,7 @@ public:
 
 	//模组对应的枚举名字
 	UPROPERTY(EditDefaultsOnly, Category = "DataDriven")
-		FName* ModuleType;
+		FName ModuleType;
 
 protected:
 	//是否已经运行BeginPlay函数
