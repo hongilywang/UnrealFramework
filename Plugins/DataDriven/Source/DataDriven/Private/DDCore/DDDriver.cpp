@@ -32,7 +32,7 @@ void ADDDriver::PostInitializeComponents()
 #if WITH_EDITOR
 void ADDDriver::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
 {
-	Super::PostEditChangeChainProperty(PropertyChangedEvent);
+	Super::PostEditChangeProperty(PropertyChangedEvent);
 	if (PropertyChangedEvent.Property && PropertyChangedEvent.Property->GetFName() == GET_MEMBER_NAME_CHECKED(ADDDriver, ModuleType))
 		Center->IterChangeModuleType(Center, ModuleType);
 }
