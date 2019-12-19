@@ -19,6 +19,11 @@ public:
 
 	virtual void PostInitializeComponents() override;
 
+#if WITH_EDITOR
+	//属性修改方法
+	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
+#endif
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

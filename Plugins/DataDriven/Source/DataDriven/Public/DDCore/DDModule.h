@@ -30,8 +30,13 @@ public:
 	//Module的Tick函数
 	virtual void ModuleTick(float DeltaSeconds);
 
+	void ChangeModuleType(FName ModuleType);
+
 public:
 	TArray<UDDModule*> ChildrenModule;
+
+	UPROPERTY(VisibleAnywhere, Category = "DataDriven")
+		int32 ModuleIndex;
 
 protected:
 	//数据模块指针

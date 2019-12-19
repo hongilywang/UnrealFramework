@@ -25,4 +25,11 @@ public:
 	void IterModuleBeginPlay(UDDModule* Module);
 	//递归Tick
 	void IterModuleTick(UDDModule* Module, float DeltaSeconds);
+	//提取所有模组到模组数组，传入枚举名字
+	void TotalGatherModule(FName ModuleType);
+	//提取所有的模组到数组
+	void IterGatherModule(UDDModule* Module, TArray<UDDModule*>& GatherGroup);
+protected:
+	//保存模组的数组，顺序与枚举相同
+	TArray<UDDModule*> ModuleGroup;
 };

@@ -24,10 +24,19 @@ void ADDDriver::PostInitializeComponents()
 	UDDCommon::Get()->InitDriver(this);
 	//游戏运行之前必须进行一次模组 ID的设定，在这里会注册子模组到数组
 	Center->IterChangeModuleType(Center, ModuleType);
-
+	Center->TotalGatherModule(ModuleType);
 	//创建所有模组的模块
 	Center->IterCreateManager(Center);
 }
+
+#if WITH_EDITOR
+void ADDDriver::PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent)
+{
+	Super::PostEditChangeChainProperty(PropertyChangedEvent);
+	if (PropertyChangedEvent.Property && PropertyChangedEvent.Property->GetFName() == GET_MEMBER_NAME_CHECKED(ADDDriver, ModuleType))
+		Center->IterChangeModuleType(Center, ModuleType);
+}
+#endif
 
 // Called when the game starts or when spawned
 void ADDDriver::BeginPlay()

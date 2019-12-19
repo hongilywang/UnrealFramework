@@ -55,3 +55,10 @@ void UDDModule::ModuleTick(float DeltaSeconds)
 	Message->MessageTick(DeltaSeconds);
 	Wealth->WealthTick(DeltaSeconds);
 }
+
+void UDDModule::ChangeModuleType(FName ModuleType)
+{
+	ModuleIndex = DDH::GetEnumIndexFromName(ModuleType.ToString(), GetFName());
+	if (ModuleIndex < 0)
+		DDH::Debug() << "Generate Module Index Error --> " << GetName() << DDH::Endl();
+}
