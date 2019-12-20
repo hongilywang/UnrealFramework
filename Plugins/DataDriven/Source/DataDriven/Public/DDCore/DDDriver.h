@@ -8,6 +8,8 @@
 #include "DDCommon/DDCommon.h"
 #include "DDDriver.generated.h"
 
+class IDDOO;
+
 UCLASS()
 class DATADRIVEN_API ADDDriver : public AActor
 {
@@ -18,6 +20,9 @@ public:
 	ADDDriver();
 
 	virtual void PostInitializeComponents() override;
+
+	//提供给资源进行注册
+	bool RegisterToModule(IDDOO* ObjectInst);
 
 #if WITH_EDITOR
 	//属性修改方法

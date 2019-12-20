@@ -32,6 +32,9 @@ public:
 
 	void ChangeModuleType(FName ModuleType);
 
+	//注册对象到数据模块
+	void RegisterObject(IDDOO* ObjectInst);
+
 public:
 	TArray<UDDModule*> ChildrenModule;
 

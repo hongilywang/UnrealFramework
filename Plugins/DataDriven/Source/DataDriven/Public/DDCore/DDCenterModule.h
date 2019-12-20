@@ -6,6 +6,7 @@
 #include "DDCore/DDModule.h"
 #include "DDCenterModule.generated.h"
 
+class IDDOO;
 /**
  * 
  */
@@ -29,6 +30,8 @@ public:
 	void TotalGatherModule(FName ModuleType);
 	//提取所有的模组到数组
 	void IterGatherModule(UDDModule* Module, TArray<UDDModule*>& GatherGroup);
+	//注册对象到模组
+	bool RegisterToModule(IDDOO* ObjectInst);
 protected:
 	//保存模组的数组，顺序与枚举相同
 	TArray<UDDModule*> ModuleGroup;

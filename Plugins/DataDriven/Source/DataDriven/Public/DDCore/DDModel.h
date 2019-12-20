@@ -7,6 +7,7 @@
 #include "DDMM.h"
 #include "DDModel.generated.h"
 
+class IDDOO;
 /**
  * 
  */
@@ -21,4 +22,7 @@ public:
 	virtual void ModelBeginPlay() {}
 
 	virtual void ModelTick(float DeltaSeconds);
+
+	//注册对象到数据模块
+	void RegisterObject(IDDOO* ObjectInst);
 };

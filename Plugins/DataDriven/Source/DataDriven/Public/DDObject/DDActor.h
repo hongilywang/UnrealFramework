@@ -4,10 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "DDOO.h"
 #include "DDActor.generated.h"
 
 UCLASS()
-class DATADRIVEN_API ADDActor : public AActor
+class DATADRIVEN_API ADDActor : public AActor, public IDDOO
 {
 	GENERATED_BODY()
 	

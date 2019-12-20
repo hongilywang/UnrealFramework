@@ -71,3 +71,8 @@ void UDDCenterModule::IterGatherModule(UDDModule* Module, TArray<UDDModule*>& Ga
 	for (int i = 0; i < Module->ChildrenModule.Num(); ++i)
 		IterGatherModule(Module->ChildrenModule[i], GatherGroup);
 }
+
+bool UDDCenterModule::RegisterToModule(IDDOO* ObjectInst)
+{
+	//
+}
